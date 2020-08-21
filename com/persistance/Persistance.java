@@ -1,3 +1,5 @@
+package com.persistance;
+
 public class Persistance {
     private String dataFile;
 

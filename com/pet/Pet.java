@@ -1,6 +1,10 @@
+package com.pet;
+
+import com.food.Food;
+
 public interface Pet {
 
-    void eat(int energy);
+    void eat(Food food);
 
     void wash(int neatness);
 
@@ -10,5 +14,5 @@ public interface Pet {
 
     void heal(int healingPower); // heal sickness
 
-    void changeMood(int loveLevel);
+    void changeMood(int loveLevel); //pet happiness
 }

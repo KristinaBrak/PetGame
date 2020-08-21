@@ -1,8 +1,13 @@
-public class Player implements PetOwner {
-    private String name;
-    Pet pet;
+package com;
 
-    public Player(String name) {
+import com.food.Food;
+import com.pet.*;
+
+public class PetOwner implements Player {
+    private String name;
+    private Pet pet;
+
+    public PetOwner(String name) {
         this.name = name;
     }
 
@@ -11,12 +16,16 @@ public class Player implements PetOwner {
         this.pet = pet;
     }
 
+    public Pet getPet() {
+        return pet;
+    }
+
     public void pet(int loveLevel) {
         pet.changeMood(loveLevel);
     }
 
-    public void feed(int energy) {
-        pet.eat(energy);
+    public void feed(Food food) {
+        pet.eat(food);
     }
 
     public void wash(int neatness) {

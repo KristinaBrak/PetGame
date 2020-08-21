@@ -1,26 +1,34 @@
+package com.pet;
+
+import com.GameConfig;
+import com.food.Food;
+
 public class Cat implements Pet {
     private String name;
     private int age;
     private int health;
-    private int hunger;
+    private int energy;
     private int mood;
     private int higiene;
     private int sleep;
+    private final int MAX_STATUS_VALUE = 100;
 
     private static int poopValue = GameConfig.POOP_VALUE;
 
     public Cat(String name) {
         this.name = name;
         age = 0;
-        health = 100;
-        hunger = 0;
-        mood = 100;
-        higiene = 100;
-        sleep = 100;
+        health = MAX_STATUS_VALUE;
+        energy = MAX_STATUS_VALUE;
+        mood = MAX_STATUS_VALUE;
+        higiene = MAX_STATUS_VALUE;
+        sleep = MAX_STATUS_VALUE;
     }
-
-    public void eat(int energy) {
-        hunger += energy;
+    public void eat(Food food) {
+        energy += food.getEnergy();
+        if(energy > MAX_STATUS_VALUE){
+            energy = MAX_STATUS_VALUE;
+        }
     }
 
     public void wash(int neatness) {
@@ -33,7 +41,6 @@ public class Cat implements Pet {
 
     public void sleep() {
         // TODO Auto-generated method stub
-
     }
 
     public void heal(int healingPower) {
@@ -48,5 +55,6 @@ public class Cat implements Pet {
     public String getName() {
         return name;
     }
+
 
 }
