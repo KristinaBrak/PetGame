@@ -2,8 +2,7 @@ package com.pet;
 
 import com.GameConfig;
 import com.food.Food;
-import com.Status;
-import com.EventHandler;
+import com.pet.status.*;
 
 public class Cat implements Pet {
     private String name;
@@ -34,7 +33,7 @@ public class Cat implements Pet {
         // higiene = MAX_STATUS_VALUE;
         // sleep = MAX_STATUS_VALUE;
 
-        energy = new Status(MAX_STATUS_VALUE, MAX_STATUS_VALUE, MIN_STATUS_VALUE);
+        energy = new StatusImp("Energy", MAX_STATUS_VALUE, MIN_STATUS_VALUE);
         // setLastEatingTime();
     }
 

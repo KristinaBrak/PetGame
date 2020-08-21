@@ -1,13 +1,15 @@
-package com;
+package com.pet.status;
 
-public class Status {
+public class StatusImp implements Status {
 
+    private String name;
     private int maxValue;
     private int minValue;
     private int value;
 
-    public Status(int initialValue, int maxValue, int minValue) {
-        value = initialValue;
+    public StatusImp(String name, int maxValue, int minValue) {
+        this.name = name;
+        this.value = maxValue;
         this.maxValue = maxValue;
         this.minValue = minValue;
     }
@@ -17,8 +19,6 @@ public class Status {
         if (this.value > maxValue) {
             this.value = maxValue;
         }
-        assert this.value < maxValue : "Pet energy cannot be above max status value";
-        System.out.println("Energy of pet: " + this.value);
     }
 
     public void decrease(int value) {
@@ -26,12 +26,14 @@ public class Status {
         if (this.value < minValue) {
             this.value = minValue;
         }
-        assert this.value > minValue : "Pet energy cannot be above max status value";
-        System.out.println("Energy of pet: " + this.value);
     }
 
     public int getValue() {
         return value;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }
