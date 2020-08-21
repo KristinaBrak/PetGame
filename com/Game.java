@@ -21,6 +21,17 @@ public class Game {
         player.createPet(petName);
 
         Food apple = new FoodImp("Apple", 10);
+
+        try {
+            Thread.sleep(GameConfig.TIME_TO_STARVE);
+            player.getPet().starve();
+            Thread.sleep(GameConfig.TIME_TO_STARVE);
+            player.getPet().starve();
+        } catch (InterruptedException e) {
+        }
+
+        player.getPet().starve();
+        player.getPet().eat(apple);
         player.getPet().eat(apple);
 
         // System.out.printf("Your name is %s and \n your pet name is %s\n", playerName,

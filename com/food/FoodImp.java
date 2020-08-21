@@ -3,15 +3,15 @@ package com.food;
 public class FoodImp implements Food {
 
     private String title;
-    private int energy;
+    private int energyValue;
 
-    public FoodImp(String title, int energy) {
+    public FoodImp(String title, int energyValue) {
         this.title = title;
-        this.energy = energy;
+        this.energyValue = energyValue;
     }
 
-    public int getEnergy() {
-        return energy;
+    public int getEnergyValue() {
+        return energyValue;
     }
 
     public String getTitle() {

@@ -6,6 +6,8 @@ public interface Pet {
 
     void eat(Food food);
 
+    void starve();
+
     void wash(int neatness);
 
     void poop();
@@ -14,5 +16,5 @@ public interface Pet {
 
     void heal(int healingPower); // heal sickness
 
-    void changeMood(int loveLevel); //pet happiness
+    void changeMood(int moodValue); // pet happiness
 }
