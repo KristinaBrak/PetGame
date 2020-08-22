@@ -12,7 +12,7 @@ public class PetOwner implements Player {
     }
 
     public void createPet(String petName) {
-        Pet pet = new Cat(petName);
+        Pet pet = new PetImp(petName);
         this.pet = pet;
     }
 

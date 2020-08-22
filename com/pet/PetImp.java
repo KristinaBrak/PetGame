@@ -1,19 +1,22 @@
 package com.pet;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.GameConfig;
 import com.food.Food;
 import com.pet.status.*;
 
-public class Cat implements Pet {
+public class PetImp implements Pet {
     private String name;
-    private int age;
-    private int health;
+    // private int age;
+    // private int health;
     // private int energy;
-    private int mood;
-    private int higiene;
-    private int sleep;
+    // private int mood;
+    // private int higiene;
+    // private int sleep;
 
-    private Status energy;
+    private Map<StatusName, Status> statuses;
 
     private final int MAX_STATUS_VALUE = 100;
     private final int MIN_STATUS_VALUE = 0;
@@ -24,7 +27,7 @@ public class Cat implements Pet {
     private static int starvationValue = GameConfig.STARVATION_VALUE;
     // private static long timeToStarve = GameConfig.TIME_TO_STARVE;
 
-    public Cat(String name) {
+    public PetImp(String name) {
         this.name = name;
         // age = MIN_STATUS_VALUE;
         // health = MAX_STATUS_VALUE;
@@ -33,17 +36,25 @@ public class Cat implements Pet {
         // higiene = MAX_STATUS_VALUE;
         // sleep = MAX_STATUS_VALUE;
 
-        energy = new StatusImp("Energy", MAX_STATUS_VALUE, MIN_STATUS_VALUE);
+        this.statuses = new HashMap<StatusName, Status>();
+
+        this.statuses.put(StatusName.ENERGY, new StatusImp(StatusName.ENERGY, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
+        this.statuses.put(StatusName.SLEEP, new StatusImp(StatusName.SLEEP, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
+        this.statuses.put(StatusName.MOOD, new StatusImp(StatusName.MOOD, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
+        this.statuses.put(StatusName.HEALTH, new StatusImp(StatusName.HEALTH, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
+
         // setLastEatingTime();
     }
 
+    @Override
     public void eat(Food food) {
-        energy.increase(food.getEnergyValue());
+        statuses.get(StatusName.ENERGY).increase(food.getEnergyValue());
         // setLastEatingTime();
     }
 
+    @Override
     public void starve() {
-        energy.decrease(starvationValue);
+        statuses.get(StatusName.ENERGY).decrease(starvationValue);
     }
 
     // private void setLastEatingTime() {
@@ -72,29 +83,43 @@ public class Cat implements Pet {
     // return false;
     // }
 
-    public void wash(int neatness) {
-        higiene += neatness;
-    }
-
-    public void poop() {
-        higiene -= poopValue;
-    }
-
-    public void sleep() {
-        // TODO Auto-generated method stub
-    }
-
-    public void heal(int healingPower) {
-        health += healingPower;
-    }
-
-    public void changeMood(int loveLevel) {
-        mood += loveLevel;
-
-    }
-
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void wash(int neatness) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void poop() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void sleep() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void heal(int healingPower) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void changeMood(int moodValue) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public Map<StatusName, Status> getStatuses() {
+        return this.statuses;
     }
 
 }

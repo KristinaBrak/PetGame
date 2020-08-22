@@ -8,6 +8,6 @@ public interface Status {
 
     int getValue();
 
-    String getName();
+    StatusName getName();
 
 }
