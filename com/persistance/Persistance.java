@@ -1,17 +1,8 @@
 package com.persistance;
 
-public class Persistance {
-    private String dataFile;
+public interface Persistance {
 
-    public Persistance(String fileName) {
-        dataFile = fileName;
-    }
+    void save(String data);
 
-    public void save(String data) {
-
-    }
-
-    public String load() {
-        return "";
-    }
+    String load();
 }

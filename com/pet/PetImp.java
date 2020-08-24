@@ -9,7 +9,7 @@ import com.pet.status.*;
 
 public class PetImp implements Pet {
     private String name;
-    // private int age;
+    private int age;
     // private int health;
     // private int energy;
     // private int mood;
@@ -18,18 +18,14 @@ public class PetImp implements Pet {
 
     private Map<StatusName, Status> statuses;
 
-    private final int MAX_STATUS_VALUE = 100;
-    private final int MIN_STATUS_VALUE = 0;
-
     // private static long lastEatTime;
 
-    private static int poopValue = GameConfig.POOP_VALUE;
     private static int starvationValue = GameConfig.STARVATION_VALUE;
     // private static long timeToStarve = GameConfig.TIME_TO_STARVE;
 
     public PetImp(String name) {
         this.name = name;
-        // age = MIN_STATUS_VALUE;
+        age = 0; // not a status
         // health = MAX_STATUS_VALUE;
         // energy = MAX_STATUS_VALUE;
         // mood = MAX_STATUS_VALUE;
@@ -38,10 +34,14 @@ public class PetImp implements Pet {
 
         this.statuses = new HashMap<StatusName, Status>();
 
-        this.statuses.put(StatusName.ENERGY, new StatusImp(StatusName.ENERGY, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
-        this.statuses.put(StatusName.SLEEP, new StatusImp(StatusName.SLEEP, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
-        this.statuses.put(StatusName.MOOD, new StatusImp(StatusName.MOOD, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
-        this.statuses.put(StatusName.HEALTH, new StatusImp(StatusName.HEALTH, MAX_STATUS_VALUE, MIN_STATUS_VALUE));
+        this.statuses.put(StatusName.ENERGY,
+                new StatusImp(StatusName.ENERGY, GameConfig.MAX_STATUS_VALUE, GameConfig.MIN_STATUS_VALUE));
+        this.statuses.put(StatusName.SLEEP,
+                new StatusImp(StatusName.SLEEP, GameConfig.MAX_STATUS_VALUE, GameConfig.MIN_STATUS_VALUE));
+        this.statuses.put(StatusName.MOOD,
+                new StatusImp(StatusName.MOOD, GameConfig.MAX_STATUS_VALUE, GameConfig.MIN_STATUS_VALUE));
+        this.statuses.put(StatusName.HEALTH,
+                new StatusImp(StatusName.HEALTH, GameConfig.MAX_STATUS_VALUE, GameConfig.MIN_STATUS_VALUE));
 
         // setLastEatingTime();
     }

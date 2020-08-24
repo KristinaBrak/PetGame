@@ -16,8 +16,8 @@ public class EventCreatorImp implements EventCreator {
 
     @Override
     public void reduceStatus() {
-        // TODO Auto-generated method stub
-
+        Status reducedStatus = getRandomStatus();
+        reducedStatus.decrease(getRandomValue());
     }
 
     private Status getRandomStatus() {
@@ -25,6 +25,12 @@ public class EventCreatorImp implements EventCreator {
         int index = random.nextInt(pet.getStatuses().size());
         ArrayList<Status> statusValues = new ArrayList<Status>(pet.getStatuses().values());
         return statusValues.get(index);
+    }
+
+    private int getRandomValue() {
+        Random random = new Random();
+        int number = random.nextInt(GameConfig.MAX_DECREASE_STATUS_VALUE);
+        return number;
     }
 
 }

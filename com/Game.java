@@ -1,18 +1,16 @@
 package com;
 
-import java.util.Scanner;
-
 import com.food.Food;
 import com.food.FoodImp;
 
 public class Game {
     public static void main(String[] args) {
 
-        String playerName = "Kristina";
+        String playerName = "Player1";
 
         Player player = new PetOwner(playerName);
 
-        String petName = "Mauricijus";
+        String petName = "Catherine";
 
         player.createPet(petName);
 
@@ -23,7 +21,6 @@ public class Game {
         player.getPet().eat(apple);
 
         EventCreator eventCreator = new EventCreatorImp(player.getPet());
-
         // System.out.printf("Your name is %s and \n your pet name is %s\n", playerName,
         // petName);
     }
