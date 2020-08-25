@@ -3,13 +3,14 @@ package com.pet;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.GameConfig;
+import com.game.GameConfig;
 import com.food.Food;
 import com.pet.status.*;
 
 public class PetImp implements Pet {
     private String name;
     private int age;
+
     // private int health;
     // private int energy;
     // private int mood;
@@ -42,14 +43,11 @@ public class PetImp implements Pet {
                 new StatusImp(StatusName.MOOD, GameConfig.MAX_STATUS_VALUE, GameConfig.MIN_STATUS_VALUE));
         this.statuses.put(StatusName.HEALTH,
                 new StatusImp(StatusName.HEALTH, GameConfig.MAX_STATUS_VALUE, GameConfig.MIN_STATUS_VALUE));
-
-        // setLastEatingTime();
     }
 
     @Override
     public void eat(Food food) {
         statuses.get(StatusName.ENERGY).increase(food.getEnergyValue());
-        // setLastEatingTime();
     }
 
     @Override
@@ -57,46 +55,18 @@ public class PetImp implements Pet {
         statuses.get(StatusName.ENERGY).decrease(starvationValue);
     }
 
-    // private void setLastEatingTime() {
-    // lastEatTime = System.currentTimeMillis();
-    // }
-
-    // public void starve() {
-    // if (isStarvingTime()) {
-    // energy -= starvationValue;
-    // if (energy < MIN_STATUS_VALUE) {
-    // energy = MIN_STATUS_VALUE;
-    // }
-    // }
-    // assert energy > MIN_STATUS_VALUE : "Pet energy cannot be below min status
-    // value";
-    // System.out.println("Energy of pet: " + energy);
-    // }
-
-    // private boolean isStarvingTime() {
-    // long time = System.currentTimeMillis() - lastEatTime;
-    // if (time > timeToStarve) {
-    // System.out.println("Is starving time: " + (double) time);
-    // return true;
-    // }
-    // System.out.println("Not starving time: " + (double) time);
-    // return false;
-    // }
-
     public String getName() {
         return name;
     }
 
     @Override
     public void wash(int neatness) {
-        // TODO Auto-generated method stub
-
+        statuses.get(StatusName.HEALTH).increase(neatness);
     }
 
     @Override
     public void poop() {
-        // TODO Auto-generated method stub
-
+        statuses.get(StatusName.HEALTH).decrease(GameConfig.POOP_VALUE);
     }
 
     @Override
@@ -107,7 +77,7 @@ public class PetImp implements Pet {
 
     @Override
     public void heal(int healingPower) {
-        // TODO Auto-generated method stub
+        statuses.get(StatusName.HEALTH).increase(healingPower);
 
     }
 

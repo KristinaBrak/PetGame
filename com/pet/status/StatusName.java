@@ -8,4 +8,5 @@ public enum StatusName {
     StatusName(String name) {
         this.name = name;
     }
+
 }

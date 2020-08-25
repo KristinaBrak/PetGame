@@ -1,4 +1,4 @@
-package com;
+package com.event;
 
 public interface EventCreator {
 
