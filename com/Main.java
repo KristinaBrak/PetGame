@@ -7,6 +7,8 @@ import java.util.Scanner;
 import com.game.GameImp;
 import com.game.GameLoop;
 import com.game.GameLoopImp;
+import com.server.Server;
+import com.server.ServerImp;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,22 +24,25 @@ public class Main {
         // player.getPet().eat(apple);
         // player.getPet().eat(apple);
 
-        Scanner scanner = new Scanner(System.in);
-        GameLoop gameLoop = new GameLoopImp(new GameImp(player));
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                String input = "";
-                while (!input.equals("x")) {
-                    System.out.println("Please enter stuff");
-                    input = scanner.nextLine();
-                }
-                gameLoop.stop();
-            }
-        };
-        thread.start();
-        gameLoop.execute();
-        scanner.close();
+        // Scanner scanner = new Scanner(System.in);
+        // GameLoop gameLoop = new GameLoopImp(new GameImp(player));
+        // Thread thread = new Thread() {
+        // @Override
+        // public void run() {
+        // String input = "";
+        // while (!input.equals("x")) {
+        // System.out.println("Please enter stuff");
+        // input = scanner.nextLine();
+        // }
         // gameLoop.stop();
+        // }
+        // };
+        // thread.start();
+        // gameLoop.execute();
+        // scanner.close();
+
+        // gameLoop.stop();
+        Server server = new ServerImp();
+        server.start();
     }
 }
