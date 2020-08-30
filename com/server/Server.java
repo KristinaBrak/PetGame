@@ -1,8 +1,9 @@
 package com.server;
 
-public interface Server {
+public interface Server extends Runnable {
 
     void start();
 
-    void createEventHandler(String input);
+    Messenger getMessenger();
+
 }

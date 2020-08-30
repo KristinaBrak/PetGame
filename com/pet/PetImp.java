@@ -97,4 +97,14 @@ public class PetImp implements Pet {
         return this.statuses;
     }
 
+    @Override
+    public String statusesToString() {
+        var values = statuses.values();
+        String text = "";
+        for (Status value : values) {
+            text += (value.getName() + " " + value.getValue() + "\t");
+        }
+        return text;
+    }
+
 }

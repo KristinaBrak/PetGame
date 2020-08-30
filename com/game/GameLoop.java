@@ -1,7 +1,7 @@
 package com.game;
 
 public interface GameLoop {
-    void execute();
+    void start();
 
     void stop();
 }

@@ -25,5 +25,7 @@ public interface Pet extends Serializable {
 
     void changeMood(int moodValue); // pet happiness
 
+    String statusesToString();
+
     Map<StatusName, Status> getStatuses();
 }

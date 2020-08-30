@@ -13,7 +13,7 @@ public class GameLoopImp implements GameLoop {
     }
 
     @Override
-    public void execute() {
+    public void start() {
         printExecuteMessage(); // TODO delete after testing
 
         while (isGameRunning) {

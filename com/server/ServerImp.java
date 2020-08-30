@@ -8,14 +8,13 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import com.game.GameConfig;
-import com.server.input.InputHandler;
-import com.server.input.InputHandlerImp;
 
 public class ServerImp implements Server {
     private static final int LISTENING_PORT = GameConfig.LISTENING_PORT;
     private ServerSocket listener;
     private Socket connection;
     private static final String serverMessage = "Server got: ";
+    private Messenger messenger;
 
     @Override
     public void start() {
@@ -36,13 +35,13 @@ public class ServerImp implements Server {
         Scanner inputStreamScanner = new Scanner(connection.getInputStream());
         OutputStream outputStream = connection.getOutputStream();
         PrintWriter out = new PrintWriter(outputStream);
+        messenger = new MessengerImp(out);
 
         // System.out.println("connection is open");
         while (!connection.isClosed() && inputStreamScanner.hasNext()) { /* Connection is closed by client */
             String input = inputStreamScanner.next();
-            // System.out.print("Reading input from client: ");
-            createEventHandler(input);
-            sendResponseToClient(input, out);
+            System.out.print("Reading input from client: ");
+            messenger.receive(input);
             // System.out.println(inputHandler.getInput()); // TODO delete after testing
 
         }
@@ -53,17 +52,13 @@ public class ServerImp implements Server {
     }
 
     @Override
-    public void createEventHandler(String input) {
-        InputHandler inputHandler = new InputHandlerImp(input);
+    public Messenger getMessenger() {
+        return this.messenger;
     }
 
-    private void sendResponseToClient(String message, PrintWriter out) {
-        // System.out.println("sendResponseToClient entered");
-
-        out.println(serverMessage + message);
-        System.out.println("Sent " + serverMessage + message);
-        out.flush();
-
+    @Override
+    public void run() {
+        start();
     }
 
 }
