@@ -2,7 +2,7 @@ package com.persistance;
 
 public interface Persistance {
 
-    void save(String data);
+    boolean save(Object object);
 
-    String load();
+    Object load();
 }

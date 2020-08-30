@@ -1,9 +1,11 @@
 package com;
 
+import java.io.Serializable;
+
 import com.food.Food;
 import com.pet.Pet;
 
-public interface Player {
+public interface Player extends Serializable {
     void createPet(String petName);
 
     Pet getPet();

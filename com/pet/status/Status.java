@@ -1,6 +1,8 @@
 package com.pet.status;
 
-public interface Status {
+import java.io.Serializable;
+
+public interface Status extends Serializable {
 
     void increase(int value);
 
@@ -9,5 +11,7 @@ public interface Status {
     int getValue();
 
     StatusName getName();
+
+    void setName(StatusName name);
 
 }

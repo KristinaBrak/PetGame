@@ -4,6 +4,8 @@ import com.food.Food;
 import com.pet.*;
 
 public class PetOwner implements Player {
+
+    private static final long serialVersionUID = -1612246279390766354L;
     private String name;
     private Pet pet;
 

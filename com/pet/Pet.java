@@ -1,18 +1,21 @@
 package com.pet;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import com.food.Food;
 import com.pet.status.Status;
 import com.pet.status.StatusName;
 
-public interface Pet {
+public interface Pet extends Serializable {
 
     void eat(Food food);
 
     void starve();
 
     void wash(int neatness);
+
+    String getName();
 
     void poop();
 

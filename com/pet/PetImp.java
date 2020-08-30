@@ -8,6 +8,10 @@ import com.food.Food;
 import com.pet.status.*;
 
 public class PetImp implements Pet {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -5763579274780121841L;
     private String name;
     private int age;
 
@@ -55,6 +59,7 @@ public class PetImp implements Pet {
         statuses.get(StatusName.ENERGY).decrease(starvationValue);
     }
 
+    @Override
     public String getName() {
         return name;
     }

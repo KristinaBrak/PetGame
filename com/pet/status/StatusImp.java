@@ -2,10 +2,14 @@ package com.pet.status;
 
 public class StatusImp implements Status {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 72374855425588857L;
+    private StatusName name;
+    private int value;
     private int maxValue;
     private int minValue;
-    private int value;
-    private StatusName name;
 
     public StatusImp(StatusName name, int maxValue, int minValue) {
         this.name = name;
@@ -40,4 +44,15 @@ public class StatusImp implements Status {
         return this.name;
     }
 
+    @Override
+    public void setName(StatusName name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Name: %s, Value: %d, Max: %d, Min: %d", this.name.getStatusNameValue(), this.value,
+                this.maxValue, this.minValue);
+
+    }
 }

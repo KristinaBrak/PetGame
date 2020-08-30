@@ -1,25 +1,35 @@
 package com;
 
-import java.util.Scanner;
-
-// import com.food.Food;
-// import com.food.FoodImp;
-import com.game.GameImp;
-import com.game.GameLoop;
-import com.game.GameLoopImp;
-import com.server.Server;
-import com.server.ServerImp;
+import com.persistance.Persistance;
+import com.persistance.PersistanceImp;
 
 public class Main {
     public static void main(String[] args) {
+
+        Persistance persistance = new PersistanceImp("test1.ser");
 
         String playerName = "Player1";
         Player player = new PetOwner(playerName);
 
         String petName = "Catherine";
         player.createPet(petName);
+        persistance.save(player);
+        // System.out.println("saved__________________________");
+        PetOwner player1 = (PetOwner) persistance.load();
+        // System.out.println("Player: " + player1.getName() +
+        // player1.getPet().getName());
 
-        // Food apple = new FoodImp("Apple", 10);
+        // Pet pet = new PetImp("name");
+        // persistance.save(pet);
+        // System.out.println(pet.getStatuses());
+        // pet.starve();
+        // persistance.save(pet);
+        // Pet pet1 = (PetImp) persistance.load();
+
+        // for (Status status : pet1.getStatuses().values()) {
+        // System.out.printf("StatusName: %s, value: %d \n", status.getName().name(),
+        // status.getValue());
+        // }
         // player.getPet().starve();
         // player.getPet().eat(apple);
         // player.getPet().eat(apple);
@@ -42,7 +52,9 @@ public class Main {
         // scanner.close();
 
         // gameLoop.stop();
-        Server server = new ServerImp();
-        server.start();
+
+        // Server server = new ServerImp();
+        // server.start();
+
     }
 }
