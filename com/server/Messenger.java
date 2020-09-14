@@ -1,5 +1,7 @@
 package com.server;
 
+import org.json.JSONObject;
+
 public interface Messenger {
 
     boolean hasMessage();
@@ -9,5 +11,7 @@ public interface Messenger {
     void receive(String message);
 
     void send(String message);
+
+    void send(JSONObject object);
 
 }

@@ -43,5 +43,4 @@ public class GameImp implements Game {
             eventCreator.reduceStatus();
         }
     }
-
 }

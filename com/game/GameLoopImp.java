@@ -9,7 +9,6 @@ public class GameLoopImp implements GameLoop {
     public GameLoopImp(Game game) {
         this.game = game;
         isGameRunning = true;
-
     }
 
     @Override

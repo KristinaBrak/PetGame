@@ -19,7 +19,7 @@ public class EventCreatorImp implements EventCreator {
     public void reduceStatus() {
         Status reducedStatus = getRandomStatus();
         reducedStatus.decrease(getRandomValue());
-        printStatuses(); // TODO delete after testing
+        // printStatuses(); // TODO delete after testing
     }
 
     private Status getRandomStatus() {

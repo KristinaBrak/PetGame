@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 import com.game.GameConfig;
@@ -23,22 +24,28 @@ public class ServerImp implements Server {
             listener = new ServerSocket(LISTENING_PORT);
             while (true) {
                 connection = listener.accept();
-                // System.out.println("connection accomplished..");
+                System.out.println("connection accomplished..");
                 handleConnection();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (NoSuchAlgorithmException e) {
         }
     }
 
-    private void handleConnection() throws IOException {
-        Scanner inputStreamScanner = new Scanner(connection.getInputStream());
+    private void handleConnection() throws IOException, NoSuchAlgorithmException {
+        var is = connection.getInputStream();
+        Scanner inputStreamScanner = new Scanner(is, "UTF-8");
         OutputStream outputStream = connection.getOutputStream();
         PrintWriter out = new PrintWriter(outputStream);
         messenger = new MessengerImp(out);
 
-        // System.out.println("connection is open");
-        while (!connection.isClosed() && inputStreamScanner.hasNext()) { /* Connection is closed by client */
+       
+        System.out.println("connection is open");
+
+        while (!connection.isClosed() && inputStreamScanner.hasNext())
+
+        { /* Connection is closed by client */
             String input = inputStreamScanner.next();
             System.out.print("Reading input from client: ");
             messenger.receive(input);

@@ -1,5 +1,10 @@
 package com;
 
+import org.java_websocket.WebSocket;
+import org.java_websocket.handshake.ClientHandshake;
+
+import java.net.InetSocketAddress;
+
 import com.game.Game;
 import com.game.GameImp;
 import com.game.GameLoop;
@@ -8,9 +13,14 @@ import com.persistance.Persistance;
 import com.persistance.PersistanceImp;
 import com.server.Server;
 import com.server.ServerImp;
+import com.server.socket.SocketServer;
+import com.server.socket.SocketServerImp;
+
+import org.java_websocket.server.WebSocketServer;
+import org.json.JSONObject;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Persistance persistance = new PersistanceImp("test1.ser");
         Player player = (PetOwner) persistance.load();
@@ -32,22 +42,30 @@ public class Main {
         // scanner.close();
 
         // gameLoop.stop();
+        // ----------
 
-        Server server = new ServerImp();
+        SocketServer server = new SocketServerImp(new InetSocketAddress("localhost", 32100));
+
+        // ws.run();
+        // Server server = new ServerImp();
         Thread serverThread = new Thread(server);
         serverThread.start();
+        
+        // while (server.getMessenger() == null) {
+        // try {
+        // Thread.sleep(1000);
+        // } catch (InterruptedException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+        // }
 
-        while (server.getMessenger() == null) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
+        // Game game = new GameImp(player, server.getMessenger());
+        // GameLoop gameLoop = new GameLoopImp(game);
+        // gameLoop.start();
+        // -----------------
 
-        Game game = new GameImp(player, server.getMessenger());
-        GameLoop gameLoop = new GameLoopImp(game);
-        gameLoop.start();
+        // Parser parser = new JSONParser("data.json");
+        // String parseResult = parser.parse();
     }
 }

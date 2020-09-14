@@ -1,0 +1,13 @@
+{
+    "Pet": {
+        "PetName": "Catherine"
+    },
+    "Statuses": [
+        {
+            "Energy": 60
+        },
+        {
+            "Health": 90
+        }
+    ]
+}

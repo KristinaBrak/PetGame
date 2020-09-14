@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import org.json.JSONObject;
+
 public class MessengerImp implements Messenger {
     PrintWriter out;
     Queue<String> queue;
@@ -17,8 +19,13 @@ public class MessengerImp implements Messenger {
     // send to client
     @Override
     public void send(String message) {
-        out.println (message);
+        out.println(message);
         out.flush();
+    }
+
+    @Override
+    public void send(JSONObject object) {
+
     }
 
     @Override
