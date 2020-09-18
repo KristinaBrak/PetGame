@@ -1,7 +1,5 @@
 package com.game;
 
-public interface GameLoop {
-    void start();
-
+public interface GameLoop extends Runnable {
     void stop();
 }

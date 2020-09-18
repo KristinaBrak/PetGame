@@ -1,8 +1,12 @@
 package com.game;
 
+import com.Player;
+
 public interface Game {
 
-    void exit();
+    void close();
 
     void update();
+
+    Player getPlayer();
 }

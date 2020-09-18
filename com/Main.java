@@ -24,8 +24,8 @@ import org.json.JSONObject;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        Persistance persistance = new PersistanceImp("test1.ser");
-        Player player = (PetOwner) persistance.load();
+        // Persistance persistance = new PersistanceImp("test1.ser");
+        // Player player = (PetOwner) persistance.load();
         // System.out.println(player.getPet().getStatuses());
 
         // Scanner scanner = new Scanner(System.in);
@@ -51,18 +51,12 @@ public class Main {
 
         Thread serverThread = new Thread(server);
         serverThread.start();
-        
-        while (server.getMessenger() == null) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
 
-        Game game = new GameImp(player, server.getMessenger());
-        GameLoop gameLoop = new GameLoopImp(game);
-        gameLoop.start();
+        
+
+        // Game game = new GameImp(player, server.getMessenger());
+        // GameLoop gameLoop = new GameLoopImp(game);
+        // gameLoop.start();
         // -----------------
 
         // Parser parser = new JSONParser("data.json");

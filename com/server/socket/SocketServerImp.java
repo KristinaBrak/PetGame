@@ -2,6 +2,13 @@ package com.server.socket;
 
 import java.net.InetSocketAddress;
 
+import com.Player;
+import com.PetOwner;
+import com.game.Game;
+import com.game.GameImp;
+import com.game.GameLoop;
+import com.game.GameLoopImp;
+import com.persistance.Persistance;
 import com.server.messenger.*;
 
 import org.java_websocket.WebSocket;
@@ -11,6 +18,7 @@ import org.java_websocket.server.WebSocketServer;
 public class SocketServerImp extends WebSocketServer implements SocketServer {
 
     Messenger messenger;
+    GameLoop gameLoop;
 
     public SocketServerImp(InetSocketAddress address) {
         super(address);
@@ -20,11 +28,13 @@ public class SocketServerImp extends WebSocketServer implements SocketServer {
     public void onClose(WebSocket conn, int code, String reason, boolean remote) {
         System.out.println(
                 "closed " + conn.getRemoteSocketAddress() + " with exit code " + code + " additional info: " + reason);
+        gameLoop.stop();
     }
 
     @Override
     public void onError(WebSocket conn, Exception ex) {
-        System.err.println("an error occurred on connection " + conn.getRemoteSocketAddress() + ":" + ex);
+        System.err.println("an error occurred on connection " + ":" + ex);
+        gameLoop.stop();
     }
 
     @Override
@@ -38,19 +48,27 @@ public class SocketServerImp extends WebSocketServer implements SocketServer {
         // conn.send("Welcome to the server!"); // This method sends a message to the
         // new client
         System.out.println("new connection to " + conn.getRemoteSocketAddress());
-        this.messenger = new MessengerWSImp(conn);
-        
-        messenger.send("welcome");
-        messenger.send("welcome2");
 
+        this.messenger = new MessengerWSImp(conn);
+        // messenger.send("welcome");
+
+        createGameLoop();
     }
 
     @Override
     public void onStart() {
         System.out.println("server started successfully");
     }
+
     @Override
     public Messenger getMessenger() {
         return this.messenger;
+    }
+
+    private void createGameLoop() {
+        Game game = new GameImp("test1.ser", this.messenger);
+        gameLoop = new GameLoopImp(game);
+        Thread gameLoopThread = new Thread(gameLoop);
+        gameLoopThread.start();
     }
 }
