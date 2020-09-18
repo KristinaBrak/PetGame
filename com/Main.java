@@ -13,6 +13,8 @@ import com.persistance.Persistance;
 import com.persistance.PersistanceImp;
 import com.server.Server;
 import com.server.ServerImp;
+import com.server.messenger.*;
+
 import com.server.socket.SocketServer;
 import com.server.socket.SocketServerImp;
 
@@ -24,6 +26,7 @@ public class Main {
 
         Persistance persistance = new PersistanceImp("test1.ser");
         Player player = (PetOwner) persistance.load();
+        // System.out.println(player.getPet().getStatuses());
 
         // Scanner scanner = new Scanner(System.in);
         // Thread thread = new Thread() {
@@ -46,26 +49,25 @@ public class Main {
 
         SocketServer server = new SocketServerImp(new InetSocketAddress("localhost", 32100));
 
-        // ws.run();
-        // Server server = new ServerImp();
         Thread serverThread = new Thread(server);
         serverThread.start();
         
-        // while (server.getMessenger() == null) {
-        // try {
-        // Thread.sleep(1000);
-        // } catch (InterruptedException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-        // }
+        while (server.getMessenger() == null) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-        // Game game = new GameImp(player, server.getMessenger());
-        // GameLoop gameLoop = new GameLoopImp(game);
-        // gameLoop.start();
+        Game game = new GameImp(player, server.getMessenger());
+        GameLoop gameLoop = new GameLoopImp(game);
+        gameLoop.start();
         // -----------------
 
         // Parser parser = new JSONParser("data.json");
+
         // String parseResult = parser.parse();
+        // System.out.println(parseResult);
     }
 }

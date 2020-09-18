@@ -5,10 +5,12 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 import com.game.GameConfig;
+import com.server.messenger.*;
 
 public class ServerImp implements Server {
     private static final int LISTENING_PORT = GameConfig.LISTENING_PORT;
@@ -40,7 +42,6 @@ public class ServerImp implements Server {
         PrintWriter out = new PrintWriter(outputStream);
         messenger = new MessengerImp(out);
 
-       
         System.out.println("connection is open");
 
         while (!connection.isClosed() && inputStreamScanner.hasNext())
@@ -48,7 +49,7 @@ public class ServerImp implements Server {
         { /* Connection is closed by client */
             String input = inputStreamScanner.next();
             System.out.print("Reading input from client: ");
-            messenger.receive(input);
+            messenger.append(input);
             // System.out.println(inputHandler.getInput()); // TODO delete after testing
 
         }

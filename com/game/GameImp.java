@@ -6,7 +6,7 @@ import com.TimeCheckerImp;
 import com.event.EventCreator;
 import com.event.EventCreatorImp;
 import com.pet.status.Status;
-import com.server.Messenger;
+import com.server.messenger.Messenger;
 
 public class GameImp implements Game {
 
@@ -30,11 +30,10 @@ public class GameImp implements Game {
 
     @Override
     public void update() {
-
         if (messenger.hasMessage()) {
             String message = messenger.getMessage();
             System.out.println(message);
-            if (message.equals("printStats")) {
+            if (message.equals("getStats")) {
                 messenger.send(player.getPet().statusesToString());
             }
         }
@@ -42,5 +41,6 @@ public class GameImp implements Game {
         if (timeChecker.hasTimePassed()) {
             eventCreator.reduceStatus();
         }
+
     }
 }

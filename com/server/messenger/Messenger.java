@@ -1,4 +1,4 @@
-package com.server;
+package com.server.messenger;
 
 import org.json.JSONObject;
 
@@ -8,7 +8,7 @@ public interface Messenger {
 
     String getMessage();
 
-    void receive(String message);
+    void append(String message);
 
     void send(String message);
 

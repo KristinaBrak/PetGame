@@ -1,4 +1,5 @@
-package com.server;
+package com.server.messenger;
+
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -40,7 +41,7 @@ public class MessengerImp implements Messenger {
 
     // adds to queue
     @Override
-    public void receive(String message) {
+    public void append(String message) {
         queue.add(message);
         System.out.println("Received:" + message);
     }
