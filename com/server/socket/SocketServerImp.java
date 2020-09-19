@@ -7,6 +7,7 @@ import com.PetOwner;
 import com.game.Game;
 import com.game.GameImp;
 import com.game.GameLoop;
+import com.game.GameLoopCreator;
 import com.game.GameLoopImp;
 import com.persistance.Persistance;
 import com.server.messenger.*;
@@ -50,9 +51,12 @@ public class SocketServerImp extends WebSocketServer implements SocketServer {
         System.out.println("new connection to " + conn.getRemoteSocketAddress());
 
         this.messenger = new MessengerWSImp(conn);
-        // messenger.send("welcome");
+        messenger.send("welcome");
 
-        createGameLoop();
+        this.gameLoop = GameLoopCreator.create(this.messenger);
+        // this.gameLoop.run();
+        Thread thread = new Thread(this.gameLoop);
+        thread.start();
     }
 
     @Override
@@ -65,10 +69,4 @@ public class SocketServerImp extends WebSocketServer implements SocketServer {
         return this.messenger;
     }
 
-    private void createGameLoop() {
-        Game game = new GameImp("test1.ser", this.messenger);
-        gameLoop = new GameLoopImp(game);
-        Thread gameLoopThread = new Thread(gameLoop);
-        gameLoopThread.start();
-    }
 }

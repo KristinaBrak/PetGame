@@ -18,16 +18,11 @@ public class GameImp implements Game {
     private Player player;
     private Persistance persistance;
 
-    // public GameImp(Player player, Messenger messenger) {
-    // eventCreator = new EventCreatorImp(player.getPet());
-    // timeChecker = new TimeCheckerImp();
-    // this.messenger = messenger;
-    // this.player = player;
-    // }
-
-    public GameImp(String fileName, Messenger messenger) {
-        persistance = new PersistanceImp(fileName);
-        this.player = (PetOwner) persistance.load();
+    public GameImp(Messenger messenger) {
+        persistance = new PersistanceImp();
+        this.player = new PetOwner("Susan");
+        this.player.createPet("Liolekas");
+        // this.player = (PetOwner) persistance.load();
         eventCreator = new EventCreatorImp(player.getPet());
         timeChecker = new TimeCheckerImp();
         this.messenger = messenger;
@@ -53,6 +48,8 @@ public class GameImp implements Game {
 
         if (timeChecker.hasTimePassed()) {
             eventCreator.reduceStatus();
+            System.out.println(player.getPet().statusesToString());
+            messenger.send(player.getPet().statusesToString());
         }
 
     }

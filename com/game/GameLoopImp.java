@@ -11,21 +11,6 @@ public class GameLoopImp implements GameLoop {
         isGameRunning = true;
     }
 
-    private void start() {
-        printExecuteMessage(); // TODO delete after testing
-
-        while (isGameRunning) {
-            game.update();
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-            }
-        }
-        game.close();
-
-    }
-
     @Override
     public void stop() {
         isGameRunning = false;
@@ -43,6 +28,21 @@ public class GameLoopImp implements GameLoop {
     @Override
     public void run() {
         start();
+    }
+
+    private void start() {
+        printExecuteMessage(); // TODO delete after testing
+
+        while (isGameRunning) {
+            game.update();
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
+        }
+        game.close();
+
     }
 
 }

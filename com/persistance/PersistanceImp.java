@@ -10,6 +10,10 @@ import java.io.ObjectOutputStream;
 public class PersistanceImp implements Persistance {
     private String fileName;
 
+    public PersistanceImp() {
+        this("test1.ser");
+    }
+
     public PersistanceImp(String fileName) {
         this.fileName = fileName;
     }
