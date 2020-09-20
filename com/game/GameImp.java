@@ -10,6 +10,10 @@ import com.persistance.Persistance;
 import com.persistance.PersistanceImp;
 import com.server.messenger.Messenger;
 
+import org.json.JSONObject;
+
+import json_formatter.StatusesJSONFormatter;
+
 public class GameImp implements Game {
 
     private EventCreator eventCreator;
@@ -41,15 +45,21 @@ public class GameImp implements Game {
             String message = messenger.getMessage();
             System.out.println(message);
             if (message.equals("getStats")) {
-                messenger.send(player.getPet().statusesToString());
-                System.out.println(player.getPet().statusesToString());
+                // messenger.send(player.getPet().statusesToString());
+                var statuses = player.getPet().getStatuses();
+                messenger.send(StatusesJSONFormatter.toJSON(statuses));
+                System.out.println(StatusesJSONFormatter.toJSON(statuses));
+                // System.out.println(player.getPet().statusesToString());
             }
         }
 
         if (timeChecker.hasTimePassed()) {
             eventCreator.reduceStatus();
-            System.out.println(player.getPet().statusesToString());
-            messenger.send(player.getPet().statusesToString());
+            // System.out.println(player.getPet().statusesToString());
+            // messenger.send(player.getPet().statusesToString());
+            var statuses = player.getPet().getStatuses();
+            messenger.send(StatusesJSONFormatter.toJSON(statuses));
+            System.out.println(StatusesJSONFormatter.toJSON(statuses));
         }
 
     }

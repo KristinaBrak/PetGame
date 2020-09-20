@@ -9,7 +9,7 @@ public enum StatusName {
         this.name = name;
     }
 
-    public String getStatusNameValue() {
+    public String toString() {
         return name;
     }
 

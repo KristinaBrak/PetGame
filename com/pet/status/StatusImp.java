@@ -51,7 +51,7 @@ public class StatusImp implements Status {
 
     @Override
     public String toString() {
-        return String.format("Name: %s, Value: %d, Max: %d, Min: %d", this.name.getStatusNameValue(), this.value,
+        return String.format("Name: %s, Value: %d, Max: %d, Min: %d", this.name.toString(), this.value,
                 this.maxValue, this.minValue);
 
     }
